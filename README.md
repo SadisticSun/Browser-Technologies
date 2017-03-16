@@ -64,6 +64,7 @@ Websites getest:
 
 Firefox: 
 + Download plugin ‘No Colors’
+
 Safari: 
 + Geen extensie beschikbaar
 
