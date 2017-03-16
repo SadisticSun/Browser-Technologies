@@ -28,11 +28,16 @@ Websites getest:
 
 #### Welke problemen veroorzaakt dit voor de gebruiker?
 ##### http://www.tele2.nl
+
 De website van Tele2 bevat veel afbeeldingen van telefoons. 
 Door de afbeeldingen uit te schakelen is de gebruiker afhankelijk van de tekstuele inhoud van de website. 
 Wat opvallend is dat de website zeer goed bruikbaar is zonder afbeeldingen. De gebruiker kan nog steeds producten bekijken,
 informatie opvragen of iets bestellen. Dit getuigt dat de afbeeldingen op deze site enkel als hulpmiddel dienen
 en niet essentieel zijn.
+
+![Tele2 site zonder afbeeldingen](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tele2_noimg1.png?raw=true)
+
+![Tele2 site zonder afbeeldingen](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tele2_noimg2.png?raw=true)
 
 #### Oplossing: 
 Niet echt nodig. Zoals hierboven beschreven werkt de website naar behoren. 
@@ -46,6 +51,10 @@ is het toch een stuk minder snel duidelijk waar een bepaald artikel over gaat.
 Vooral de reviews komen niet goed uit de verf wanneer er geen afbeeldingen getoond worden. 
 Video werkt echter wel. De sectie ‘Vraag en Aanbod’ is ten dode opgeschreven wanneer er geen afbeeldingen zichtbaar zijn. 
 Dit omdat het aannemelijk is dat de gebruiker fotomateriaal van een aangeboden product wil zien.
+
+![Tweakers site zonder afbeeldingen](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tweakers_noimg1.png?raw=true)
+
+![Tweakers site zonder afbeeldingen](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tweakers_noimg2.png?raw=true)
 
 #### Oplossing: 
 De website blijft goed bruikbaar door het gebruik van goede titels en alt-attributen. 
@@ -77,12 +86,18 @@ De plugin Greyscale schakelt alle kleuren uit en toont enkel grijstinten op de h
 Hierdoor is goed zichtbaar dat de vormgeving van de site nog steeds werkt en er een duidelijk onderscheid is 
 tussen alle elementen. Er zijn een paar elementen die minder goed leesbaar worden, zoals de informatie onder de telefoons.
 
+![Tele2 met grijstinten](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tele2_grey1.png?raw=true)
+
+![Tele2 met grijstinten](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tele2_grey2.png?raw=true)
+
 #### Oplossing: 
 De beschrijving van de abonnementen op de toestellen pagina voorzien van een iets donkerdere kleur.
 
 ##### http://www.tweakers.net
 Op deze site valt op dat de ‘je gebruikt een ad-blocker’ melding een beetje verdwijnt op de achtergrond. 
 De gebruikte kleur geel valt weg wanneer Greyscale geactiveerd wordt.
+
+![Tweakers met grijstinten](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/tweakers_grey.png?raw=true)
 
 #### Oplossing: 
 Verhoog het contrast de achtergrond van deze meldingen ten opzichte van de rest van de pagina.
@@ -97,6 +112,10 @@ op de app en de mogelijke oplossingen om deze effecten te ondervangen.
 #### Effect:
 In Chrome worden er in lijn der verwachting geen afbeeldingen geladen, maar in Firefox worden SVG's wel geladen wanneer de instellingen afbeeldingen niet toestaan. Safari gedraagt zich zoals verwacht.
 
+![Funda app met afbeeldingen](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/funda_img.png?raw=true)
+
+![Funda app zonder afbeeldingen](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/funda_noimg.png?raw=true)
+
 ### Feature 2: Custom Fonts uitschakelen
 #### Effect:
 Aangezien er geen gebruik is gemaakt van extern ingeladen fonts heeft dit geen effect gehad.
@@ -109,6 +128,14 @@ Wanneer JS uitgeschakeld is functioneert de app niet meer. Er wordt geen data me
 #### Effect:
 Om deze feature te testen heb ik gebruik gemaakt van de app Sim Daltonism. Deze app simuleert de condities van iemand die kleurenblind is en biedt ook allerlei varianten van kleurenblindheid. Deze tool zou essentieel moeten zijn voor zowel designers als developers om te controleren of het gebruikte kleurenpalette werkt. Het resultaat is dat de gebruikte kleuren voldoende contrast hebben om onderscheid te kunnen maken tussen de interactieve elementen op de pagina's. 
 
+![Funda app met kleurcontrole](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/funda_color1.png?raw=true)
+
+![Funda app met kleurcontrole](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/funda_color2.png?raw=true)
+
+![Funda app met kleurcontrole](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/funda_color3.png?raw=true)
+
+![Funda app met kleurcontrole](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/funda_color4.png?raw=true)
+
 ### Feature 5: Trage breedbandsnelheid
 #### Effect:
 Ik heb de laadtijd van de app gemeten op 2G Regular (Chrome Dev Tools) snelheid. 
@@ -117,6 +144,8 @@ Het resultaat is als volgt.
 	+ DOMContentLoaded @ 620ms
 	+ Full Load @ 633ms
 	+ Opzoeken en tonen data @ +/- 24s
+
+[Ik maakte een gifje ervan! Bekijk hem hier](https://github.com/SadisticSun/Browser-Technologies/blob/master/README%20img/gifje.gif)
 
 Het valt op dat het opzoeken van locatiegegevens en de API data een aantal keer mislukt omdat de timeout op het ophalen van de locatiegegevens verlopen is. Door deze timeout, nu op max 10sec, te verhogen naar 20sec zou dit opgelost kunnen worden, echter zal de applicatie in de huidige staat er dan ook 20 seconden over doen om een locatie te bepalen, ongeacht internet snelheid.
 
@@ -129,6 +158,8 @@ Een mogelijkheid zou zijn om de locatie van de gebruiker op te slaan in een cook
 #### Effect:
 Ook hier is geen gebruik van gemaakt in de app, maar zou wellicht een optie kunnen zijn. Zo zou de Funda data direct opgehaald kunnen worden en opgeslagen in localStorage voor snelle toegang in plaats van een API call uitvoeren om een detail pagina te bekijken. Het probleem is echter dat de data dan voor altijd opgeslagen zal worden op de harde schijf van de gebruiker, en de maximale toegewezen ruimte hiervoor verschilt per browser met een maximum van 10MB op voor de grotere browsers. Wanneer deze localStorage door andere sites/apps gebruikt wordt kan het zijn dat deze al snel vol is en de app niet meer werkt.
 Een variant op localStorage is sessionStorage, die de gegevens alleen gedurende de sessie bewaart en de ruimte daarna weer vrijmaakt.
+
+![localStorage opslag grootte](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/localStorage%sizes.png?raw=true)
 
 ### Feature 8: Muis/trackpad uitschakelen
 #### Effect:
