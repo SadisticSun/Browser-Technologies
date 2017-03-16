@@ -1,0 +1,184 @@
+
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+body {
+    height: 100%;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    padding: 0 1em;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgrey;
+}
+
+header {
+    background: #F7A100;
+    color: white;
+}
+
+#header-logo {
+    height: 2em;
+    margin: 0.5em 0;
+}
+
+section {
+    color: white;
+    background-color: whitesmoke;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#zoeken nav {
+    width: 100%;
+    padding: 2em 0;
+    background-color: #F7A100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#startCheck {
+    margin-left: 1em;
+}
+
+
+#banner-img {
+    width: 100%;
+    height: 45vh;
+    padding: 1em;
+    background-color: white;
+    background-image: url(../img/huis.svg);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.btn {
+    padding: 1em;
+    width: 10em;
+    max-height: 1em;
+    text-align: center;
+    margin: 1em 0;
+    border: none;
+    background-color: #0071B3;
+    color: white;
+    font-size: 100%;
+    text-decoration: none;
+    border-radius: 0.4em;
+}
+.btn:hover,
+.btn:focus {
+    cursor: pointer;
+    background-color: #024d79;
+}
+
+
+#searchResults {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.huisItem {
+    padding: 1.5em;
+    flex-basis: 40%;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin: 1em;
+    color: #333;
+    -webkit-box-shadow: 0px 13px 37px -15px rgba(173,173,173,1);
+    -moz-box-shadow: 0px 13px 37px -15px rgba(173,173,173,1);
+    box-shadow: 0px 13px 37px -15px rgba(173,173,173,1);
+}
+.huisItem div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.huisItem div:nth-of-type(2) {
+    justify-content: ;
+    align-items: flex-end;
+}
+
+.huisItem a {
+    flex-basis: 100%;
+}
+
+/* Details pagina */
+
+.item-details {
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 5em;
+}
+.back-btn {
+    flex-basis: 10%;
+}
+.item-details div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 2em;
+}
+
+.details-header {
+    display: flex;
+    align-items: center;
+    background: none;
+    color: #333;
+}
+
+.details-header h4 {
+    text-indent: -1em;
+}
+.item-beschikbaar  {
+    color: lightgreen;
+    margin-left: 2em;
+}
+.item-prijs {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    color: #333;
+    font-size: 200%;
+}
+
+
+/* Helper classes */
+.visible {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 30em) {
+    #zoeken nav {
+        width: 100%;
+        /* padding: 2em 0; */
+        background-color: #F7A100;
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        flex-direction: column;
+    }
+}
