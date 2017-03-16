@@ -159,7 +159,7 @@ Een mogelijkheid zou zijn om de locatie van de gebruiker op te slaan in een cook
 Ook hier is geen gebruik van gemaakt in de app, maar zou wellicht een optie kunnen zijn. Zo zou de Funda data direct opgehaald kunnen worden en opgeslagen in localStorage voor snelle toegang in plaats van een API call uitvoeren om een detail pagina te bekijken. Het probleem is echter dat de data dan voor altijd opgeslagen zal worden op de harde schijf van de gebruiker, en de maximale toegewezen ruimte hiervoor verschilt per browser met een maximum van 10MB op voor de grotere browsers. Wanneer deze localStorage door andere sites/apps gebruikt wordt kan het zijn dat deze al snel vol is en de app niet meer werkt.
 Een variant op localStorage is sessionStorage, die de gegevens alleen gedurende de sessie bewaart en de ruimte daarna weer vrijmaakt.
 
-![localStorage opslag grootte](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/localStorage%sizes.png?raw=true)
+![localStorage opslag grootte](https://raw.github.com/SadisticSun/Browser-Technologies/master/README%20img/localStorage_sizes.png?raw=true)
 
 ### Feature 8: Muis/trackpad uitschakelen
 #### Effect:
