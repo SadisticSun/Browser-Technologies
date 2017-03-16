@@ -19,7 +19,7 @@ Websites getest:
     2.  Zoek “permissions.default.image 
     3.  Zet value op: 
 	  * 2 -> Blokkeer enkel afbeeldingen van derde partijen
-    * 3 -> Blokkeer alle afbeeldingen 
+    	  * 3 -> Blokkeer alle afbeeldingen 
 
 * Safari:
     1. Toon ontwikkel menu 
@@ -59,14 +59,14 @@ Websites getest:
  * https://tweakers.net/
  
 #### Hoe?: 
-* Chrome:
-+ Download plugin ‘Greyscale’
+ * Chrome:
+ * Download plugin ‘Greyscale’
 
 Firefox: 
-+ Download plugin ‘No Colors’
+ * Download plugin ‘No Colors’
 
 Safari: 
-+ Geen extensie beschikbaar
+ * Geen extensie beschikbaar
 
 #### Welke problemen veroorzaakt dit voor de gebruiker?
 
