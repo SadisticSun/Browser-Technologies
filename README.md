@@ -10,20 +10,21 @@ Websites getest:
 
 #### Hoe?: 
 * Chrome:
-    1.  Instellingen 
-    2.  Geavanceerde instellingen 
-    3.  Instellingen voor content 
-    4.  Geen afbeeldingen tonen
-* Firefox: 
-    1.  In adresbalk “about:config" 
-    2.  Zoek “permissions.default.image 
-    3.  Zet value op: 
-	  * 2 -> Blokkeer enkel afbeeldingen van derde partijen
-    	  * 3 -> Blokkeer alle afbeeldingen 
+ 	1.  Instellingen 
+ 	2.  Geavanceerde instellingen 
+ 	3.  Instellingen voor content 
+ 	4.  Geen afbeeldingen tonen
 
+* Firefox: 
+	1.  In adresbalk “about:config" 
+	2.  Zoek “permissions.default.image 
+	3.  Zet value op: 
+		* 2 -> Blokkeer enkel afbeeldingen van derde partijen
+		* 3 -> Blokkeer alle afbeeldingen 
+		
 * Safari:
-    1. Toon ontwikkel menu 
-    2. Schakel afbeeldingen uit
+	1. Toon ontwikkel menu 
+	2. Schakel afbeeldingen uit
 
 #### Welke problemen veroorzaakt dit voor de gebruiker?
 ##### http://www.tele2.nl
@@ -46,7 +47,8 @@ Vooral de reviews komen niet goed uit de verf wanneer er geen afbeeldingen getoo
 Video werkt echter wel. De sectie ‘Vraag en Aanbod’ is ten dode opgeschreven wanneer er geen afbeeldingen zichtbaar zijn. 
 Dit omdat het aannemelijk is dat de gebruiker fotomateriaal van een aangeboden product wil zien.
 
-#### Oplossing: De website blijft goed bruikbaar door het gebruik van goede titels en alt-attributen. 
+#### Oplossing: 
+De website blijft goed bruikbaar door het gebruik van goede titels en alt-attributen. 
 Op de marktplaats pagina zou het een overweging zijn om de conditie van het aangeboden product voorop te stellen, 
 aangezien het aannemelijk is dat daar veel naar gekeken wordt.
 
