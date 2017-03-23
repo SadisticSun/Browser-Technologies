@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<title>CSS Features w. fallback 1</title>
+
+
+<!-- Source: http://blog.teamtreehouse.com/thinking-ahead-native-css-feature-detection -->
+
+<body>
+<div class="blue"></div>
+<div class="red"></div>
+<div class="green"></div>
+<div class="purple"></div>
+
+<style>
+
+    /*
+        If the browser supports flexbox, set the body to display as a flexible box.
+     */
+
+    @supports (display: flex){
+        body {
+            display: flex;
+        }
+        div {
+            flex-basis: 25%;
+        }
+    }
+
+    div {
+        height: 10em;
+        width: 25%;
+    }
+    .blue {
+        background: cornflowerblue;
+    }
+    .red {
+        background: crimson;
+    }
+    .green {
+        background: mediumspringgreen;
+    }
+    .purple {
+        background: rebeccapurple;
+    }
+
+</style>
+</body>
+</html>

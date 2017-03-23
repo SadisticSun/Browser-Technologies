@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <title>HTML Features w. fallback 1</title>
+<style>
+    p {
+        line-height: 2em;
+    }
+    code {
+        background: #333;
+        padding: 0.5em;
+        color: lightseagreen;
+    }
+</style>
+<body>
+    <h1>HTML Features w. fallback: inputs</h1>
+    <p>
+        <code>&lt;input type="search"&gt;</code> will fallback to <code>&lt;input type="text"&gt;</code> on unsupported browsers.<br>
+        Will have a placeholder 'Search' telling the user the expected input type.
+    </p>
+    <input type="search" placeholder="Search">
+    <p>
+        <code>&lt;input type="color"&gt;</code> will fallback to <code>&lt;input type="text"&gt;</code> on unsupported browsers.<br>
+        Will have a placeholder 'Color' telling the user the expected input type.
+    </p>
+    <input type="color" placeholder="Color">
+    <p>
+        <code>&lt;input type="time"&gt;</code> will fallback to <code>&lt;input type="text"&gt;</code> on unsupported browsers.<br>
+        Will have a placeholder 'Time: hh-mm-ss' telling the user the expected input type.
+    </p>
+    <input type="time" placeholder="Time: hh-mm-ss">
+</body>
+</html>

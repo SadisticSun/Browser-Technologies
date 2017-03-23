@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<title>HTML Features w. fallback 2</title>
+<style>
+    p {
+        line-height: 2em;
+    }
+    code {
+        background: #333;
+        padding: 0.5em;
+        color: crimson;
+    }
+</style>
+
+<!-- Source: https://mobilehtml5.org/ts/?id=23 -->
+
+<body>
+    <h1>HTML Features w. fallback: Media Capture</h1>
+    <p>
+        <code>&lt;input type="file" accept="image/*" capture="camera" &gt;</code> will fallback to <code>&lt;input type="file"&gt;</code> on unsupported browsers.<br>
+    </p>
+    <input type="file" accept="image/*" id="capture" capture="camera">
+
+    <p>
+        <code>&lt;input type="file" accept="audio/*" id="capture" capture="microphone" &gt;</code> will fallback to <code>&lt;input type="file"&gt;</code> on unsupported browsers.<br>
+    </p>
+    <input type="file" accept="audio/*" capture="microphone">
+
+    <p>
+        <code>&lt;input type="file" accept="image/*" capture="camera" &gt;</code> will fallback to <code>&lt;input type="file"&gt;</code> on unsupported browsers.<br>
+    </p>
+    <input type="file" accept="video/*"  capture="camcorder">
+</body>
+</html>
