@@ -2,11 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CSS Features w. fallback 2</title>
 </head>
-<title>CSS Features w. fallback 2</title>
+<body>
+<div class="block">
+    <h2>This block is actually Crimson Red but has some opacity value.</h2>
+    <p>Fallback for IE6+ = <code>filter: alpha(opacity=55);</code></p>
+</div>
+</body>
 
+<style>
 
-<body></body>
+    /* Source: http://www.hongkiat.com/blog/css-javascript-fallback-methods/ */
 
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background: lightseagreen;
+        padding-top: 20vh;
+    }
+    div {
+        width: 40em;
+        text-align: center;
+        padding: 10em;
+        margin: 0 auto;
+        background: crimson;
+        color: white;
+    }
+
+    /* Fallback for IE6+ where opacity is not supported */
+
+    .block {
+        opacity: 0.55; /* CSS3 */
+        filter: alpha(opacity=55); /* IE6+ */
+    }
+
+</style>
 </html>

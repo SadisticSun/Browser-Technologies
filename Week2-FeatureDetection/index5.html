@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Features w. fallback 1</title>
+</head>
+<body>
+<div id="block">
+    <h1>querySelector & querySelectorAll</h1>
+    <ul>
+        <li class="list-item"></li>
+        <li class="list-item"></li>
+        <li class="list-item"></li>
+        <li class="list-item"></li>
+        <li class="list-item"></li>
+        <li class="list-item"></li>
+    </ul>
+</div>
+</body>
+
+<script>
+
+    // Source: https://www.webdirections.org/blog/html5-selectors-api-its-like-a-swiss-army-knife-for-the-dom/
+
+    // Detect if the browsers supports queryselectors. If so, then use getElement.
+
+    var block;
+    var items;
+    var message = "I am a list item!";
+
+    if (!document.querySelector || !document.querySelectorAll) {
+        console.log("You're using Internet Explorer 7 or lower.. BOOO!");
+        block = document.getElementById('block');
+        items  = document.getElementsByClassName('list-item');
+    } else {
+        console.log("You're not using Internet Explorer.. YAAY!");
+        block = document.querySelector('#block');
+        items = document.querySelectorAll('.list-item');
+    }
+
+    function showItems() {
+        items.forEach(function (item) {
+            item.innerHTML = message;
+        })
+    }
+
+    showItems();
+
+</script>
+</html>

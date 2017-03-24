@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Features w. fallback 2</title>
+</head>
+<body>
+<div id="block">
+    <h1>Event.preventDefault();</h1>
+    <form id="form">
+        <input type="submit" value="Click me!">
+    </form>
+</div>
+</body>
+
+<script>
+
+    // Source: https://stackoverflow.com/questions/1000597/event-preventdefault-function-not-working-in-ie
+
+    var form = document.getElementById('form');
+
+    form.addEventListener('submit', function (e) {
+        // Check if preventDetault is supported.
+        if (!event.preventDefault) {
+            // No support, use IE version of preventDefault
+            e.returnValue = false;
+            console.log('Form submitted (IE version)')
+        } else {
+            e.preventDefault();
+            console.log('Form submitted (Chrome/FF/Safari version)');
+        }
+    })
+
+
+</script>
+</html>
