@@ -1,0 +1,13 @@
+{
+  "name": "GIF Search",
+  "long_name": "Serverside Web App",
+  "start_url": "/?homescreen=1",
+  "display": "standalone",
+  "theme_color": "#DC143C",
+  "background_color": "#fff",
+  "icons":[{
+    "src": "img/icon.png",
+    "sizes": "180x180",
+    "type": "image/png"
+    }]
+}

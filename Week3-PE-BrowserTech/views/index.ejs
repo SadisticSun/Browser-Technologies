@@ -1,0 +1,45 @@
+<% include partials/head %>
+<% include partials/header %>
+
+<section name="search">
+
+    <h1>Zoek personen</h1>
+
+    <div>
+        <form id="search-form" method="POST" action="/">
+            <input id="input" name="query" type="text" value="<% user_query %>" required placeholder="Zoek personen...">
+            <input id="search" type="submit" value="Search"></input>
+        </form>
+
+    </div>
+
+    <hr>
+
+    <% if (items && items.length >= 1) { %>
+        <div id="result-bar">
+            <p>Zoekresultaten voor: "<%= user_query %>"</p>
+            
+        </div>
+        <div id="searchresults">
+          <ul>
+                <% items.forEach(function(person) { %>
+                    <li>
+                      <div class="person-info">
+                        <a class="link-to-detail" href="/detail/<%=person.id%>"><h3><%= person.first_name %> <%= person.last_name %></h3></a>
+                        <p>Email: <%= person.email %></p>
+                      </div>
+                    </li>
+                  <% }) %>
+          </ul>
+        </div>
+    <% } else { %>
+      <p>Nothing found for: "<%= user_query%>"</p>
+    <% }%>
+
+
+</section>
+<script type="text/javascript">
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../sw.js');
+};
+</script>
