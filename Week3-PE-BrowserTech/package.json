@@ -9,13 +9,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js && watchify main.js -o public/js/bundle.js -v",
-    "build": "browserify main.js -o public/js/bundle.js -v",
     "watch": "watchify main.js -o public/js/bundle.js -v"
   },
   "author": "Tristan Jacobs",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^14.1.0",
     "watchify": "^3.9.0"
   },
   "dependencies": {

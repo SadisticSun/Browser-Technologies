@@ -27,21 +27,17 @@ app.post('/', urlencodedParser, function(req, res) {
     String.prototype.capitalize = function() {
       return this.charAt(0).toUpperCase() + this.slice(1);
     };
+
     var people = exampleData;
     var userQuery = req.body.query;
     var formattedQuery = userQuery.capitalize();
     var results = [];
 
-    console.log('Gezocht naar: ' + formattedQuery);
-
-
     for (var i = 0; i < people.length; i++) {
-      if (people[i].first_name == formattedQuery) {
+      if (people[i].first_name.includes(formattedQuery) || people[i].last_name.includes(formattedQuery)) {
         results.push(people[i]);
       }
     }
-
-    console.log('Gevonden: ' + results);
 
     res.render('index', {
         user_query: formattedQuery,
@@ -49,9 +45,13 @@ app.post('/', urlencodedParser, function(req, res) {
     });
 });
 
-app.get('/details/:id', function(req, res) {
+app.get('/person/:id', function(req, res) {
+    var id = req.params.id;
+    var person = exampleData.find(function(result) {
+      return result.id == id;
+    });
     res.render('details', {
-        // detail page
+        "person": person
     });
 });
 app.listen(app.get('port'), function() {
