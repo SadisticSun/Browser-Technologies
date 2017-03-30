@@ -70,6 +70,24 @@ With CSS disabled, no styles will be loaded and a basic markup version of the ap
 ![No CSS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nocss.png?raw=true)
 ![No CSS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nocss_detail.png?raw=true)
 
+## Experimental feature: Details Tag 
+<details><summary>I am a details tag. Click me!</summary> Yay! I am a details paragraph!</details>
+
+The details tag is an experimental feature that creates a simple JS-less widget to toggle the visibility of a piece of content. It is supported on most recent browsers, except Microsoft Edge.
+
+![CanIUse?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/caniuse_details.png?raw=true)
+
+### When Supported
+Ofcourse, Chrome supports it. Being the awesome browser it is it displays the tag and it's content perfectly.
+
+![Chrome is awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_chrome.png?raw=true)
+![Chrome is awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_chrome2.png?raw=true)
+
+### When NOT Supported
+When this feature is not supported, the content of the details tag is rendered immediately.
+
+![Edge is not awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_edge.png?raw=true)
+
 
 ## Link to live
 Not yet :(
