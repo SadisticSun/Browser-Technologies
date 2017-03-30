@@ -14,12 +14,10 @@
     <hr />
     <section>
       <div id="searchresults">
-      <% if (items && items.length >= 1) { %>
+        <% if (items && items.length >= 1) { %>
           <div id="result-bar">
               <p>Zoekresultaten voor: "<%= user_query %>"</p>
           </div>
-
-
             <ul>
               <% items.forEach(function(person) { %>
                 <li>
@@ -37,8 +35,7 @@
                 </li>
               <% }) %>
             </ul>
-
-      <% } else if (items && items.length == 0) { %> <p>Niks gevonden :( ...</p> <%} %>
+        <% } else if (items && items.length == 0) { %> <p>Niks gevonden :( ...</p> <%} %>
       </div>
     </section>
   </article>

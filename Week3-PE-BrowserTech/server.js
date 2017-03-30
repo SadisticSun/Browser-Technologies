@@ -7,14 +7,10 @@ var urlencodedParser = bodyParser.urlencoded({
 });
 var exampleData = require('./data.json');
 
-
-
-app.set('port', (process.env.PORT || 8080));
-app.use(urlencodedParser);
-app.set('view engine', 'ejs');
 app.use(express.static('public'));
-
-
+app.use(urlencodedParser);
+app.set('port', (process.env.PORT || 8080));
+app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
   res.render('index', {
@@ -24,6 +20,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', urlencodedParser, function(req, res) {
+
     String.prototype.capitalize = function() {
       return this.charAt(0).toUpperCase() + this.slice(1);
     };
