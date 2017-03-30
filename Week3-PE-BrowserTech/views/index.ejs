@@ -25,7 +25,14 @@
                 <li>
                   <div class="person-info">
                     <img class="avatar" src="<%= person.avatar%>" alt="<%= person.first_name%>'s Avatar'">
-                    <a class="link-to-detail" href=<%= "/person/" + person.id %>><h3><%= person.first_name %> <%= person.last_name %></h3></a>
+                    <div>
+                      <a class="link-to-detail" href=<%= "/person/" + person.id %>><h3><%= person.first_name %> <%= person.last_name %></h3></a>
+                      <details>
+                        <summary>Contact Info</summary>
+                        <p>Email: <%= person.email %></p>
+                        <p>Telefoon: <%= person.phone %></p>
+                      </details>
+                    </div>
                   </div>
                 </li>
               <% }) %>

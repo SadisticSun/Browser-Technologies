@@ -63,7 +63,8 @@ input:focus {
 }
 
 #search:hover,
-#search:focus {
+#search:focus,
+details:focus {
     cursor: pointer;
     transition: 0.2s;
     background-color: crimson;
@@ -91,12 +92,16 @@ section {
   width: 100%;
   transition: 0.3s;
   border: 1px solid lightgrey;
-  padding: 0 1em 0 0;
+  padding: 1em;
   margin-bottom: 1em;
 }
 .person-info:hover {
   transition: 0.3s;
   border: 0.1em solid crimson;
+}
+
+details:hover {
+  cursor: pointer;
 }
 
 .link-to-detail {
@@ -105,16 +110,6 @@ section {
   text-decoration: none;
   color: crimson;
 }
-.link-to-detail:after {
-  content: '';
-  width: 19em;
-  top: -0.8em;
-  right: 0;
-  left: -5em;
-  bottom: -0.6em;
-  position: absolute;
-}
-
 .link-to-detail:hover {
   cursor: pointer;
 }
