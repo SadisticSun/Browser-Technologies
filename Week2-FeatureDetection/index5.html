@@ -38,13 +38,13 @@
         items = document.querySelectorAll('.list-item');
     }
 
-    function showItems() {
-        items.forEach(function (item) {
-            item.innerHTML = message;
-        })
+    function showItems(arr) {
+      for (var i = 0; i < arr.length; i++) {
+        arr[i].innerHTML = message;
+      }
     }
 
-    showItems();
+    showItems(items);
 
 </script>
 </html>
