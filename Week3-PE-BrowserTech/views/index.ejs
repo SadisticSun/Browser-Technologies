@@ -1,4 +1,4 @@
-<% include partials/head %>
+<% include partials/head.ejs %>
 
 <main name="search">
   <article>
@@ -17,8 +17,13 @@
         <% if (items && items.length >= 1) { %>
           <div id="result-bar">
               <p>Zoekresultaten voor: "<%= user_query %>"</p>
+              <div id="layout-selector">
+                <span><img id="grid-icon" src="img/grid.png"></span>
+                <span><img id="row-icon" src="img/rows.png"></span>
+              </div>
           </div>
-            <ul>
+
+            <ul id="results">
               <% items.forEach(function(person) { %>
                 <li>
                   <div class="person-info">
@@ -35,17 +40,11 @@
                 </li>
               <% }) %>
             </ul>
+
         <% } else if (items && items.length == 0) { %> <p>Niks gevonden :( ...</p> <%} %>
       </div>
     </section>
   </article>
 </main>
 
-<script type="text/javascript">
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../sw.js');
-};
-</script>
-<script type="text/javascript" src="/js/main.js">
-
-</script>
+<% include partials/footer.ejs %>
