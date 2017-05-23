@@ -7,7 +7,7 @@ const compression       = require('compression');
 const urlencodedParser  = bodyParser.urlencoded({extended: false});
 const exampleData       = require('./data.json');
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(urlencodedParser);
 app.use(compression())
 app.set('port', (8080));
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.post('/', urlencodedParser, (req, res) => {
 
-    String.prototype.capitalize = function() {
+    String.prototype.capitalize = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     };
 

@@ -1,50 +1,59 @@
 <% include partials/head.ejs %>
 
-<main name="search">
-  <article>
-    <section>
-      <h1>Zoek contacten</h1>
-      <div>
-          <form id="search-form" method="POST" action="/">
-              <input id="input" name="query" type="text" value="<% user_query %>" required placeholder="Zoek op naam...">
-              <input id="search" type="submit" value="Zoeken"></input>
-          </form>
-      </div>
-    </section>
-    <hr />
-    <section>
-      <div id="searchresults">
-        <% if (items && items.length >= 1) { %>
-          <div id="result-bar">
-              <p>Zoekresultaten voor: "<%= user_query %>"</p>
-              <div id="layout-selector">
-                <span><img id="grid-icon" src="img/grid.png"></span>
-                <span><img id="row-icon" src="img/rows.png"></span>
-              </div>
-          </div>
+    <main name="search">
+        <article>
+            <section>
+                <h1>Zoek contacten</h1>
+                <div>
+                    <form id="search-form" method="POST" action="/">
+                        <input id="input" name="query" type="text" value="<% user_query %>" required placeholder="Zoek op naam...">
+                        <input id="search" type="submit" value="Zoeken"></input>
+                    </form>
+                </div>
+            </section>
+            <hr />
+            <section>
+                <div id="searchresults">
+                    <% if (items && items.length >= 1) { %>
+                        <div id="result-bar">
+                            <p>Zoekresultaten voor: "
+                                <%= user_query %>"</p>
+                            <div id="layout-selector">
+                                <span><img id="grid-icon" src="img/grid.png"></span>
+                                <span><img id="row-icon" src="img/rows.png"></span>
+                            </div>
+                        </div>
 
-            <ul id="results">
-              <% items.forEach(function(person) { %>
-                <li>
-                  <div class="person-info">
-                    <img class="avatar" src="<%= person.avatar%>" alt="<%= person.first_name%>'s Avatar'">
-                    <div>
-                      <a class="link-to-detail" href=<%= "/person/" + person.id %>><h3><%= person.first_name %> <%= person.last_name %></h3></a>
-                      <details>
-                        <summary>Contact Info</summary>
-                        <p>Email: <%= person.email %></p>
-                        <p>Telefoon: <%= person.phone %></p>
-                      </details>
-                    </div>
-                  </div>
-                </li>
-              <% }) %>
-            </ul>
+                        <ul id="results">
+                            <% items.forEach(function(person) { %>
+                                <li>
+                                    <div class="person-info">
+                                        <img class="avatar" src="<%= person.avatar%>" alt="<%= person.first_name%>'s Avatar'">
+                                        <div>
+                                            <a class="link-to-detail" href=<%="/person/" + person.id %>><h3><%= person.first_name %> <%= person.last_name %></h3></a>
+                                            <details>
+                                                <summary>Contact Info</summary>
+                                                <p>Email:
+                                                    <%= person.email %>
+                                                </p>
+                                                <p>Telefoon:
+                                                    <%= person.phone %>
+                                                </p>
+                                            </details>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% }) %>
+                        </ul>
 
-        <% } else if (items && items.length == 0) { %> <p>Niks gevonden :( ...</p> <%} %>
-      </div>
-    </section>
-  </article>
-</main>
+                        <% } else if (items && items.length == 0) { %>
+                            <p>Niks gevonden :( ...</p>
+                        <% } else { %>
+                          <p>Oh oh, er ging iets mis ...</p>
+                        <% } %>
+                </div>
+            </section>
+        </article>
+    </main>
 
-<% include partials/footer.ejs %>
+    <% include partials/footer.ejs %>
