@@ -70,7 +70,7 @@ With CSS disabled, no styles will be loaded and a basic markup version of the ap
 ![No CSS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nocss.png?raw=true)
 ![No CSS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nocss_detail.png?raw=true)
 
-## Experimental feature: Details Tag 
+## Experimental feature 1: Details Tag 
 <details><summary>I am a details tag. Click me!</summary> Yay! I am a details paragraph!</details>
 
 The details tag is an experimental feature that creates a simple JS-less widget to toggle the visibility of a piece of content. It is supported on most recent browsers, except Microsoft Edge.
@@ -88,6 +88,11 @@ When this feature is not supported, the content of the details tag is rendered i
 
 ![Edge is not awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_edge.png?raw=true)
 
+## Javascript Enhancement: Layout Toggler
+When Javascript is enabled, the user can toggle different views of the contact cards to either a grid view or a row view.
+
+### No JS?
+When Javascript is not enabled/supported, the feature will not display and the app is usable in the original way, i.e. a standard row layout is used and all other features are available.
 
 ## Link to live
 Not yet :(
