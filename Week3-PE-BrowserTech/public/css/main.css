@@ -1,174 +1,43 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,700');
+
+/* Fallback for IE versions without HTML5 tag support */
+main, article, section, header, footer {
+  display: block;
+}
+
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    color: #333;
+  background-color: deepskyblue;
+  color: white;
 }
-
-header {
-    background: crimson;
-    color: white;
-    margin: 0;
-    padding: 0 2em;
-}
-
-nav ul li {
-    padding: 1em;
-}
-
-nav ul li a {
-    transition: 0.2s;
-    color: white;
-    margin-left: -2em;
-    padding: 1em;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    transition: 0.2s;
-    background: white;
-    color: crimson;
-}
-
-
-/* Form */
 
 form {
-    display: flex;
+  width: 40em;
+  margin: 10em auto;
 }
 
-input:focus {
-    outline: 2px solid crimson
+form fieldset {
+  padding: 2em;
 }
 
-#input {
-    padding: 1em;
-    color: #333;
-    font-size: medium;
+form fieldset legend {
+  color: inherit;
+  font-weight: bold;
 }
 
-#search {
-    transition: 0.2s;
-    -webkit-appearance: none;
-    padding: 0 2em;
-    background: none;
-    border: 1px solid lightgrey;
-    text-transform: uppercase;
+form fieldset label {
+  display: block;
+  margin: 1em 0;
 }
 
-#search:hover, #search:focus, details:focus {
-    cursor: pointer;
-    transition: 0.2s;
-    background-color: crimson;
-    color: white;
+form fieldset label input {
+  float: right;
+  width: 20em;
 }
 
-
-/* Sections */
-
-section {
-    padding: 2em;
-}
-
-#searchresults ul {
-    list-style: none;
-}
-
-#searchresults ul li {
-    margin-left: -2.4em;
-}
-
-.person-info {
-    transition: 0.3s;
-    border: 1px solid lightgrey;
-    padding: 1em;
-    margin-bottom: 1em;
-}
-
-.person-info:hover {
-    transition: 0.3s;
-    border: 0.1em solid crimson;
-}
-
-details:hover {
-    cursor: pointer;
-}
-
-.link-to-detail {
-    position: relative;
-    transition: 0.3s;
-    text-decoration: none;
-    color: crimson;
-}
-
-.link-to-detail:hover {
-    cursor: pointer;
-}
-
-.avatar {
-    height: 5em;
-}
-
-#detailpage .back-btn {
-    display: inline-block;
-
-    padding: 1em;
-    background-color: crimson;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.2em;
-    margin: 0 2em 0 0;
-}
-
-#detailpage .back-btn:focus, #detailpage .back-btn:hover {
-    background-color: red;
+form input[type="submit"] {
+  display: block;
+  margin: 2em auto;
 }
 
 footer {
   text-align: center;
-}
-/* ================ */
-
-@supports (display:flex) {
-
-  .person-info {
-      display: flex;
-      align-items: center;
-  }
-
-  #result-bar {
-      display: flex;
-      justify-content: space-between;
-  }
-  #layout-selector span img {
-      height: 2em;
-      margin-right: 1em;
-      cursor: pointer;
-      filter: grayscale(100%);
-      transition: 0.2s ease-in;
-  }
-
-  .active {
-    filter: grayscale(0%);
-    transform: scale(1.3);
-    transition: 0.2s ease-in;
-  }
-
-  .align-grid {
-    flex-basis: 25%;
-  }
-
-  .gridLayout {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-}
-
-@supports not (display:flex) {
-  #layout-selector {
-    display: none;
-  }
 }
