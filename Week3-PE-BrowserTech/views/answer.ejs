@@ -1,0 +1,18 @@
+<% include partials/head.ejs %>
+
+<main>
+  <section class="block-container">
+    <form data-name="<%= pollData.pollName %>" id="submit-answer-form">
+      <h1><%= pollData.pollQuestion %></h1>
+      <fieldset>
+        <legend>Jouw antwoord</legend>
+        <input id="answer1" type="button" name="answer-1" value="<%= pollData.pollAnswer1 %>">
+        <input id="answer2" type="button" name="answer-2" value="<%= pollData.pollAnswer2 %>">
+      </fieldset>
+    </form>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<% include partials/footer.ejs %>

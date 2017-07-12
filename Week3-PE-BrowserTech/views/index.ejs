@@ -1,57 +1,36 @@
 <% include partials/head.ejs %>
 
-    <main name="search">
-        <article>
-            <section>
-                <h1>Zoek contacten</h1>
-                <div>
-                    <form id="search-form" method="POST" action="/">
-                        <input id="input" name="query" type="text" value="<% user_query %>" required placeholder="Zoek op naam...">
-                        <input id="search" type="submit" value="Zoeken"></input>
-                    </form>
-                </div>
-            </section>
-            <hr />
-            <section>
-                <div id="searchresults">
-                    <% if (items && items.length >= 1) { %>
-                        <div id="result-bar">
-                            <p>Zoekresultaten voor: "
-                                <%= user_query %>"</p>
-                            <div id="layout-selector">
-                                <span><img id="grid-icon" src="img/grid.png"></span>
-                                <span><img id="row-icon" src="img/rows.png"></span>
-                            </div>
-                        </div>
+<main>
+  <h1>Welkom bij PollBuddy!</h1>
+  <section class="block-container">
+    <form id="submit-poll-form" method="post" action="/">
+      <fieldset>
+        <legend>Nieuwe Poll Aanmaken</legend>
+        <div class="field-container">
+          <label>
+            <span>Poll naam (dit wordt de URL)</span>
+            <input type="text" name="pollName" required placeholder="Geef de poll een naam">
+          </label>
+          <hr>
+          <label>
+            <span>Welke vraag wil je stellen?</span>
+            <input type="text" name="pollQuestion" required placeholder="Typ je vraag">
+          </label>
+          <label>
+            <span>Antwoord 1</span>
+            <input type="text" name="pollAnswer1" required placeholder="Typ het eerste antwoord">
+          </label>
+          <label>
+            <span>Antwoord 2</span>
+            <input type="text" name="pollAnswer2" required placeholder="Typ het tweede antwoord">
+          </label>
+        </div>
+      </fieldset>
+      <input type="submit" value="Aanmaken">
+    </form>
+  </section>
+</main>
 
-                        <ul id="results">
-                            <% items.forEach(function(person) { %>
-                                <li>
-                                    <div class="person-info">
-                                        <img class="avatar" src="<%= person.avatar%>" alt="<%= person.first_name%>'s Avatar'">
-                                        <div>
-                                            <a class="link-to-detail" href=<%="/person/" + person.id %>><h3><%= person.first_name %> <%= person.last_name %></h3></a>
-                                            <details>
-                                                <summary>Contact Info</summary>
-                                                <p>Email:
-                                                    <%= person.email %>
-                                                </p>
-                                                <p>Telefoon:
-                                                    <%= person.phone %>
-                                                </p>
-                                            </details>
-                                        </div>
-                                    </div>
-                                </li>
-                                <% }) %>
-                        </ul>
-
-                        <% } else if (items && items.length == 0) { %>
-                            <p>Niks gevonden :( ...</p>
-                        <% } %>
-                </div>
-            </section>
-        </article>
-    </main>
-
-    <% include partials/footer.ejs %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<% include partials/footer.ejs %>

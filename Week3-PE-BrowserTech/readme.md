@@ -1,110 +1,215 @@
-# Browser Technologies - Progressive Enhanced Web App
+# Browser Technologies - PollBuddy
 
-## About this repo
-This repo contains a progressively enhanced web app for the Browser Technologies course. The assignment was to create a simple demo application to practice and show how progressive enhancement for the web works.
+## About
+This repo contains a progressively enhanced web app for the Browser Technologies course. The assignment was to create a simple demo application to practice and show how progressive enhancement for the web works. The first version of my attempt at this assignment was a simple page that shows a search field to search for contacts.
+
+In this version I took it a bit further (and different) and made a fun little app with which you can create a real-time poll.
+
+## User Story
+The user story for this app is that a teacher wants to create a poll amongst his or her students, share the link and display the results live on screen.
 
 ## Core functionality
-The main functionality of this app is to search contacts in a database and display it in the client.
+The main functionality of this app is to create a poll and send the link to others for them to answer the poll.
+
+## Usability
+All input elements have hover states, focus states and active states. This improves UX by a lot for users that depend on navigating with a keyboard only. One could tab one's way though the application and still use it perfectly fine.
+
+The forms have been made as semantic as possible for optimal screen reader usage.
+
+The user story states that a teacher wants to be able to use it. Since there are cases where schools only allow Internet Explorer, it is essential that the app works on those browsers.
 
 ## How it's done
-The app is created in 3 stages:
+The app functionality is built upon Websockets. Using Socket.io it is possible to send data and show any changes real-time in an overview page.
+Socket.io is somewhat of an industry standard when it comes to websockets and is widely used. On top of that, Socket.io has good browser support. I even managed to get it to work in Internet Explorer 8.
 
-1. Core functionality with only HTML
-This ensures that when a user's browser is not able to load CSS and JavaScript the app still functions.
-To do this, the entire basic markup and functionality is rendered server-side. This way the server carries the 'heavy' lifting of the search functionality, database requests and dynamic rendering of page content.
+The chart is made with ChartJS, a handy little library that is useful for all kinds of charts and is easy to implement, has great cross-browser support and looks good out of the box.
 
-2. Enhanced visuals for better readability
-When CSS is able to load, the app will be styled and given a better UX.
+Most of the logic is rendered server-side, ensuring better support (and performance) across platforms and browsers. However, some essential code is needed on the client side.
+All markup has been checked for support and whenever it is absent, a small fallback is used.
 
-3. Enhanced functionality with JavaScript
-When the client is fully capable, provide the best features and UX the app has.
+Styling is done with Flexbox where possible and fallbacks for non-flexbox browsers are present.
 
-## Browser Testing
-To check if the app is properly enhanced in a progressive manner, I tested it in different browsers. I used very old versions of popular browsers via Browserstack.com. Unfortunately I was not able to test in all the available browsers because of my limited account. I did, however, test on various mobile devices: Android Chrome & Android Browser, Apple Safari iOS (iPhone 6S & iPad Air)
+## Special Technologies/Enhancements used
+- Flexbox
+- Socket.io
+- Chart.js
+
+### Fallbacks
+#### Flexbox
+Fallbacks, or rather enhancements, for flexbox are needed for Internet Explorer 8 and below since these do not support it. For this, I styled the entire app in IE8 first, making sure it provides a basic visual interface and accompanying user experience. After this, I enhanced the visuals with some extra pazazz for the modern browsers.
+
+The app's use of flexbox is mostly to center items on screen with fewer lines of code, so the enhancements are relatively easy to do.
+
+```CSS
+@supports (display:flex) {
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  form {
+    margin: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .field-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+```
+The ```@supports``` check is great! It checks if ```display:flex``` is supported. If so, override the styles according to the rules within it. This means that if there is no flexbox support, all previous stated style rules stay applied, not breaking the design.
+
+#### Client-side Javascript
+Extra care was taken to not use certain JS features that are not supported by at IE8, or provide the proprietary technology for it. The eventListener is a good example:
+
+```Javascript  
+if (!document.addEventListener) {
+    form.answer1.attachEvent('onclick', function() {
+      app.sendAnswer1();
+    });
+    form.answer2.attachEvent('onclick', function() {
+      app.sendAnswer2();
+    });
+  } else {
+    form.answer1.addEventListener('click', function() {
+      console.log('Antwoord 1 versturen');
+      app.sendAnswer1();
+    });
+    form.answer2.addEventListener('click', function() {
+      console.log('Antwoord 2 versturen');
+      app.sendAnswer2();
+    });
+  }
+```
+Here I check if the eventListener is or is not present. If it isn't, use Microsoft's own ```attachEvent``` method.
+
+Another example of a fallback is a redirect. Here I did use a browser sniffing method for selfeducational purposes.
+
+```javascript
+redirect: function () {
+  var userAgent = navigator.userAgent.toLowerCase(),
+  isIE          = userAgent.indexOf('msie') !== -1,
+  version       = parseInt(userAgent.substr(4, 2), 10),
+  formID        = form.answerForm.getAttribute('data-name'),
+  url           = '/thankyou';
+
+  // Internet Explorer 8 and lower
+  if (isIE && version < 9) {
+      var link = document.createElement('a');
+      link.href = url;
+      document.body.appendChild(link);
+      link.click();
+  }
+
+  // All other browsers can use the standard window.location.href
+  else {
+      window.location.href = url
+  }
+}
+```
+The script basically creates a link to the page we want to redirect to and then clicks it.
+Other browsers will just use the standard ```window.location.href```.
+#### Chart.js
+
+Because Chart.js is not supported by IE8 (because of methods used that were not available), I have built a fallback for it to not load it in the script. Since I also provide a numerical overview that is real-time as well, it is just an enhancement that could be degraded gracefully.
+
+```Javascript
+var resultsChart;
+var updateChart;
+
+if (document.addEventListener) {
+  resultsChart = new Chart(ctx,{
+      type: 'pie',
+      data: chartData,
+      options: {
+        legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 18,
+          }
+        }
+      }
+  });
+  updateChart = function(i, resultcounter) {
+    chartData.datasets[0].data[i] = resultcounter;
+    resultsChart.update();
+    console.log('Chart updated');
+  }
+} else {
+  updateChart = function(){
+    console.log('No chart supported, skipped loading');
+  }
+}
+```
+By checking if eventlistener is or is not supported, we can sniff out if IE8 is being used, or another browser that has no support for Chart.js' essentials.
+This method is advised by Microsoft's Developer Network as they feel Feature Detection is better than Browser Sniffing.
+
+Source: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
+## Browser Support
+The app has been tested for support on the following browsers:
+- Google Chrome
+- Mozilla Firefox
+- Apple Safari
+- Opera
+- Opera Neon
+- Microsoft Edge
+- Microsoft Internet Explorer 8
+- Microsoft Internet Explorer 9+
+
+Going any lower than IE8 would be very difficult due to the app being bound to Socket.io.
 
 ### Recent Browsers
 
 #### Chrome
-The normal version of the app with all features and styling enabled running in Chrome 56 (most recent).
-![Chrome](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/chrome_recent.png?raw=true)
-![Chrome Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/chrome_recent_detail.png?raw=true)
+
 
 #### Firefox
-The normal version of the app with all features and styling enabled running in Firefox 52 (most recent).
-![Firefox](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/firefox_recent.png?raw=true)
-![Firefox Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/firefox_detail.png?raw=true)
+
 
 #### Safari
-The normal version of the app with all features and styling enabled running in Safari 10 (most recent).
-![Safari](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/safari_recent.png?raw=true)
-![Safari Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/safari_recent_detail.png?raw=true)
+
 
 #### Opera
-The normal version of the app with all features and styling enabled running in Opera 44 (most recent).
-![Opera](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/opera.png?raw=true)
-![Opera Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/opera_detail.png?raw=true)
+
 
 #### Neon (experimental)
-The normal version of the app with all features and styling enabled running in Neon 1.0 (most recent).
-![Neon](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/neon.png?raw=true)
-![Neon Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/neon_detail.png?raw=true)
 
-#### Internet Explorer
-The normal version of the app with all features and styling enabled running in IE11 (most recent).
-![IE11](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/IE11.png?raw=true)
-![IE11 Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/ie11_detail.png?raw=true)
 
-#### Internet Explorer 5 (IE11 compatibility mode)
-The normal version of the app with all features and styling enabled running in IE5 Compatibility Mode, a feature in IE11.
-![IE5](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/ie5.png?raw=true)
-![IE5 Detail Page](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/ie5_detail.png?raw=true)
+#### Edge
 
-## Progressive Enhancement
-### No JavaScript
-With JS disabled, the app functions properly due to the server-side rendering.
-![No JS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nojs.png?raw=true)
-![No JS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nojs_detail.png?raw=true)
 
-### No CSS
-With CSS disabled, no styles will be loaded and a basic markup version of the app is presented.
-![No CSS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nocss.png?raw=true)
-![No CSS!](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/nocss_detail.png?raw=true)
+#### Internet Explorer 8
 
-## Experimental feature 1: Details Tag 
-<details><summary>I am a details tag. Click me!</summary> Yay! I am a details paragraph!</details>
+#### Internet Explorer 9
 
-The details tag is an experimental feature that creates a simple JS-less widget to toggle the visibility of a piece of content. It is supported on most recent browsers, except Microsoft Edge.
 
-![CanIUse?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/caniuse_details.png?raw=true)
+### Known issues and unsupported features
+When Javascript is not enabled/supported, the app will not work. This is due to Socket.io's depencency on Javascript. Is is not possible to create a real-time app without Javascript at this point in time and therefore a well considered choice has been made to require it for the app's use.
 
-### When Supported
-Ofcourse, Chrome supports it. Being the awesome browser it is it displays the tag and it's content perfectly.
+#### Interesting quirks
+A funny little thing that I encountered is that ```console.log(message)``` does not work in IE8 and IE9 when the developer tools are not open. That means that the app could potentially crash on lines that have these. I solved this issue by placing a piece of code in the script that checks if the console object is present:
 
-![Chrome is awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_chrome.png?raw=true)
-![Chrome is awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_chrome2.png?raw=true)
-
-### When NOT Supported
-When this feature is not supported, the content of the details tag is rendered immediately.
-
-![Edge is not awesome?](https://raw.github.com/SadisticSun/Browser-Technologies/master/Week3-PE-BrowserTech/readme-img/details-tag_edge.png?raw=true)
-
-## Javascript Enhancement: Layout Toggler
-When Javascript is enabled, the user can toggle different views of the contact cards to either a grid view or a row view.
-
-### No JS?
-When Javascript is not enabled/supported, the feature will not display and the app is usable in the original way, i.e. a standard row layout is used and all other features are available.
-
-## Link to live
-Not yet :(
+```Javascript
+if (typeof console == "undefined") console = {
+    log: function() {},
+    debug: function() {},
+    error: function() {}
+};
+```
+I found this solution at: https://stackoverflow.com/questions/27953823/console-is-undefined-error-in-ie8
 
 ## Dependencies
 * Body Parser
 * EJS
 * Express
-* Request
-
-## Dev Dependencies
-* Watchify
+* Socket.io
 
 ## Usage
 
@@ -116,6 +221,7 @@ In terminal:
 ```
 npm install
 ```
+
 3. Run app with
 ```
 node server.js
