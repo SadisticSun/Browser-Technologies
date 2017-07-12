@@ -10,12 +10,12 @@
     console.log('Antwoord 1 ontvangen!');
     results1Count++;
     document.getElementById('results1').innerHTML = results1Count;
-  })
+  });
 
   socket.on('updateAnswer2', function () {
     console.log('Antwoord 2 ontvangen!');
     results2Count++;
     document.getElementById('results2').innerHTML = results2Count;
-  })
+  });
 
 }());

@@ -12,13 +12,26 @@
 
     var app = {
       init: function () {
-        form.answer1.addEventListener('click', function() {
-          console.log(window.location.href);
-          app.sendAnswer1();
-        });
-        form.answer2.addEventListener('click', function() {
-          app.sendAnswer2();
-        });
+        if (!document.addEventListener) {
+          console.log('No addEventListener support. Switching to attachEvent..');
+          form.answer1.attachEvent('onclick', function() {
+            console.log('Antwoord 1 versturen');
+            app.sendAnswer1();
+          });
+          form.answer2.attachEvent('onclick', function() {
+            console.log('Antwoord 2 versturen');
+            app.sendAnswer2();
+          });
+        } else {
+          form.answer1.addEventListener('click', function() {
+            console.log('Antwoord 1 versturen');
+            app.sendAnswer1();
+          });
+          form.answer2.addEventListener('click', function() {
+            console.log('Antwoord 2 versturen');
+            app.sendAnswer2();
+          });
+        }
       },
       sendAnswer1: function () {
         socket.emit('answer1', function () {

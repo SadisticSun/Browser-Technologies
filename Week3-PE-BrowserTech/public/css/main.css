@@ -8,6 +8,7 @@ body {
   background-color: deepskyblue;
   color: white;
   text-align: center;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 form {
@@ -42,6 +43,11 @@ form input[type="submit"] {
 .answer1, .answer2 {
   display: inline-block;
   margin: 0 2em;;
+}
+
+#results1, #results2 {
+  font-size: 600%;
+  font-weight: bold;
 }
 
 footer {

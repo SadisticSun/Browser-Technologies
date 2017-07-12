@@ -7,11 +7,14 @@ const compression       = require('compression');
 const server            = require('http').createServer(app);
 const io                = require('socket.io').listen(server);
 
+server.listen(8080, () => {
+    console.log('App listening on: http://localhost:8080');
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(compression())
-app.set('port', (8080));
 app.set('view engine', 'ejs');
 
 var pollInformation = {}
@@ -60,8 +63,4 @@ app.get(`/:${pollInformation.pollName}`, (req, res) => {
 
 app.get(`/results/:${pollInformation.pollName}`, (req, res) => {
   res.render('results', {pollData: pollInformation});
-});
-
-server.listen(app.get('port'), () => {
-    console.log('App listening on: http://localhost:8080');
 });
