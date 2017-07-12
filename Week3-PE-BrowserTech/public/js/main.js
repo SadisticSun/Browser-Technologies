@@ -1,6 +1,13 @@
 (function(){
     "use strict";
 
+    // Fallback for IE8's lack of console log without opening dev tools
+    if (typeof console == "undefined") console = {
+        log: function() {},
+        debug: function() {},
+        error: function() {}
+    };
+    
     var socket = io();
 
     var form = {

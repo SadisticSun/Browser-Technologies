@@ -18,25 +18,40 @@
           answer2
       ]
   };
-  var resultsChart = new Chart(ctx,{
-      type: 'pie',
-      data: chartData,
-      options: {
-        legend: {
-          labels: {
-              fontColor: "white",
-              fontSize: 18,
+
+  var resultsChart;
+  var updateChart;
+
+  if (document.addEventListener) {
+    resultsChart = new Chart(ctx,{
+        type: 'pie',
+        data: chartData,
+        options: {
+          legend: {
+            labels: {
+                fontColor: "white",
+                fontSize: 18,
+            }
           }
         }
-      }
-  });
-
-
-  function updateChart(i, resultcounter) {
-    chartData.datasets[0].data[i] = resultcounter;
-    resultsChart.update();
-    console.log('Chart updated');
+    });
+    updateChart = function(i, resultcounter) {
+      chartData.datasets[0].data[i] = resultcounter;
+      resultsChart.update();
+      console.log('Chart updated');
+    }
+  } else {
+    updateChart = function(){
+      console.log('No chart supported, skipped loading');
+    }
   }
+
+  // Fallback for IE8's lack of console log without opening dev tools
+  if (typeof console == "undefined") console = {
+      log: function() {},
+      debug: function() {},
+      error: function() {}
+  };
 
   socket.on('updateAnswer1', function () {
     console.log('Antwoord 1 ontvangen!');
