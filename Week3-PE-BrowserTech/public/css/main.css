@@ -101,6 +101,11 @@ form input[type="button"]:focus {
   font-weight: bold;
 }
 
+#resultsChart {
+  width: 5em;
+  height: 5em;
+}
+
 .copyright {
   text-align: center;
   color: #333;

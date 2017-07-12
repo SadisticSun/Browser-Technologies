@@ -58,7 +58,7 @@
             link.click();
         }
 
-        // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like Internet Explorer 8 & lower does)
+        // All other browsers can use the standard window.location.href
         else {
             window.location.href = url
         }

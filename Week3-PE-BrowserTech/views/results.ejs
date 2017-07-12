@@ -11,15 +11,16 @@
 
       <section class="results">
         <h3>Respons:</h3>
-        <section class="answer1">
-          <h3><%= pollData.pollAnswer1 %></h3>
-          <span id="results1">0</span>
-        </section>
+          <section class="answer1">
+            <h3 id="answer1-value" data-answer="<%= pollData.pollAnswer1 %>"><%= pollData.pollAnswer1 %></h3>
+            <span id="results1">0</span>
+          </section>
 
-        <section class="answer1">
-          <h3><%= pollData.pollAnswer2 %></h3>
-          <span id="results2">0</span>
-        </section>
+          <section class="answer1">
+            <h3 id="answer2-value" data-answer="<%= pollData.pollAnswer2 %>"><%= pollData.pollAnswer2 %></h3>
+            <span id="results2">0</span>
+          </section>
+        <canvas id="resultsChart" width="400" height="250"></canvas>
       </section>
     <% } else { %>
       <p>Oops, no data :(</p>
@@ -28,5 +29,8 @@
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script type="text/javascript" src="/js/results.js"></script>
+
+
 <% include partials/footer %>
