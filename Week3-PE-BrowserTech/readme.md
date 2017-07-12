@@ -1,5 +1,7 @@
 # Browser Technologies - PollBuddy
 
+![PollBuddy](readme-img/pollbuddy.png)
+
 ## About
 This repo contains a progressively enhanced web app for the Browser Technologies course. The assignment was to create a simple demo application to practice and show how progressive enhancement for the web works. The first version of my attempt at this assignment was a simple page that shows a search field to search for contacts.
 
@@ -11,8 +13,13 @@ The user story for this app is that a teacher wants to create a poll amongst his
 ## Core functionality
 The main functionality of this app is to create a poll and send the link to others for them to answer the poll.
 
+![PollBuddy](readme-img/overview_empty.png)
+![PollBuddy](readme-img/poll_results.png)
+
 ## Usability
 All input elements have hover states, focus states and active states. This improves UX by a lot for users that depend on navigating with a keyboard only. One could tab one's way though the application and still use it perfectly fine.
+
+![PollBuddy](readme-img/hoverstate.gif)
 
 The forms have been made as semantic as possible for optimal screen reader usage.
 
@@ -118,6 +125,8 @@ The script basically creates a link to the page we want to redirect to and then 
 Other browsers will just use the standard ```window.location.href```.
 #### Chart.js
 
+![PollBuddy](readme-img/chart_animation.gif)
+
 Because Chart.js is not supported by IE8 (because of methods used that were not available), I have built a fallback for it to not load it in the script. Since I also provide a numerical overview that is real-time as well, it is just an enhancement that could be degraded gracefully.
 
 ```Javascript
@@ -159,35 +168,37 @@ The app has been tested for support on the following browsers:
 - Apple Safari
 - Opera
 - Opera Neon
-- Microsoft Edge
 - Microsoft Internet Explorer 8
 - Microsoft Internet Explorer 9+
 
 Going any lower than IE8 would be very difficult due to the app being bound to Socket.io.
 
-### Recent Browsers
+### Browsers
 
 #### Chrome
-
+![PollBuddy](readme-img/chrome.png)
 
 #### Firefox
-
+![PollBuddy](readme-img/firefox.png)
 
 #### Safari
-
+![PollBuddy](readme-img/safari.png)
 
 #### Opera
-
+![PollBuddy](readme-img/opera.png)
 
 #### Neon (experimental)
-
-
-#### Edge
-
+![PollBuddy](readme-img/neon.png)
 
 #### Internet Explorer 8
+Submitting the answer works perfectly fine. Thank you, Socket.io!
+![PollBuddy](readme-img/ie8submit.gif)
+As you can see, no chart is loaded on unsupported browsers.
+![PollBuddy](readme-img/ie8.gif)
 
 #### Internet Explorer 9
+Of course IE9 works then too. Even including fancy chart!
+![PollBuddy](readme-img/ie9.gif)
 
 
 ### Known issues and unsupported features
