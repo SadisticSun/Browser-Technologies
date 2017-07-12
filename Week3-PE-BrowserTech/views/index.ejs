@@ -6,21 +6,21 @@
       <fieldset>
         <legend>Nieuwe Poll Aanmaken</legend>
         <label>
-          <span>Poll naam</span>
-          <input type="text" name="poll-name" required placeholder="Geef de poll een naam">
+          <span>Poll naam (dit wordt de URL)</span>
+          <input type="text" name="pollName" required placeholder="Geef de poll een naam">
         </label>
         <hr>
         <label>
           <span>Welke vraag wil je stellen?</span>
-          <input type="text" name="poll-question" required placeholder="Typ je vraag">
+          <input type="text" name="pollQuestion" required placeholder="Typ je vraag">
         </label>
         <label>
           <span>Antwoord 1</span>
-          <input type="text" name="poll-answer-1" required placeholder="Typ het eerste antwoord">
+          <input type="text" name="pollAnswer1" required placeholder="Typ het eerste antwoord">
         </label>
         <label>
           <span>Antwoord 2</span>
-          <input type="text" name="poll-answer-2" required placeholder="Typ het tweede antwoord">
+          <input type="text" name="pollAnswer2" required placeholder="Typ het tweede antwoord">
         </label>
       </fieldset>
       <input type="submit" value="Aanmaken">
@@ -28,4 +28,6 @@
   </section>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 <% include partials/footer.ejs %>
