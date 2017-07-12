@@ -13,13 +13,10 @@
     var app = {
       init: function () {
         if (!document.addEventListener) {
-          console.log('No addEventListener support. Switching to attachEvent..');
           form.answer1.attachEvent('onclick', function() {
-            console.log('Antwoord 1 versturen');
             app.sendAnswer1();
           });
           form.answer2.attachEvent('onclick', function() {
-            console.log('Antwoord 2 versturen');
             app.sendAnswer2();
           });
         } else {
@@ -37,13 +34,13 @@
         socket.emit('answer1', function () {
           console.log('Antwoord 1 gegeven');
         })
-        // app.redirect();
+        app.redirect();
       },
       sendAnswer2: function () {
         socket.emit('answer2', function () {
           console.log('Antwoord 2 gegeven');
         })
-        // app.redirect();
+        app.redirect();
       },
 
       redirect: function () {
@@ -51,7 +48,7 @@
         isIE          = userAgent.indexOf('msie') !== -1,
         version       = parseInt(userAgent.substr(4, 2), 10),
         formID        = form.answerForm.getAttribute('data-name'),
-        url           = '/results/' + formID;
+        url           = '/thankyou';
 
         // Internet Explorer 8 and lower
         if (isIE && version < 9) {

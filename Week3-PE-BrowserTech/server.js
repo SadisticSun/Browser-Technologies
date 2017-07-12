@@ -21,7 +21,7 @@ var pollInformation = {}
 
 io.on('connection', function (socket) {
   // Connect
-  console.log('[Server] New User Connected: %s user(s) connected');
+  console.log('[Server] New user connected');
 
   socket.on('answer1', function () {
     console.log('Iemand gaf antwoord 1');
@@ -35,12 +35,16 @@ io.on('connection', function (socket) {
 
   // Disconnect
   socket.on('disconnect', function () {
-    console.log('[Server] Disconnected: %s user(s) still connected');
+    console.log('[Server] User disconnected.');
   });
 });
 
 app.get('/', (req, res) => {
     res.render('index', {} );
+});
+
+app.get('/thankyou', (req, res) => {
+    res.render('thanks');
 });
 
 app.post('/', (req, res) => {
