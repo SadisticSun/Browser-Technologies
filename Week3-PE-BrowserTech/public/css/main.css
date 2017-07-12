@@ -5,40 +5,89 @@ main, article, section, header, footer {
 }
 
 body {
-  background-color: deepskyblue;
-  color: white;
+  background-color: #FFFFFF;
+  color: #333333;
   text-align: center;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Avenir Next', Helvetica, sans-serif;
+  font-size: 20px;
 }
 
-form {
-  width: 40em;
-  margin: 10em auto;
+h1, h2, h3, h4 {
+  font-weight: bolder;
+}
+
+h1 {
+  font-size: 200%;
+}
+
+.block-container {
+  width: 30em;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #0099FF;
+  color: #fff;
+  border-radius: 1em;
 }
 
 form fieldset {
   padding: 2em;
+  border: none;
 }
 
 form fieldset legend {
   color: inherit;
   font-weight: bold;
+  font-size: 150%;
+  text-align: center;
 }
 
-form fieldset label {
+form fieldset label span {
   display: block;
-  margin: 1em 0;
+  margin: 1em 0 0;
 }
 
 form fieldset label input {
-  float: right;
   width: 20em;
+  padding: 1em 2em;
+  border: 2px solid #fff;
+  border-radius: 1em;
+  cursor: text;
+  font-size: large;
+}
+form fieldset label input:hover,
+form fieldset label input:active,
+form fieldset label input:focus {
+  border: 2px solid #F0AD4E;
+  outline: none;
 }
 
-form input[type="submit"] {
-  display: block;
-  margin: 2em auto;
+
+form input[type="submit"],
+form input[type="button"] {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.5em 1em;
+  background-color: #7ED321;
+  border: none;
+  color: white;
+  font-size: 120%;
+  cursor: pointer;
 }
+
+form input[type="submit"]:hover,
+form input[type="submit"]:active,
+form input[type="submit"]:focus,
+form input[type="button"]:hover,
+form input[type="button"]:active,
+form input[type="button"]:focus {
+  background-color: #0583A6;
+}
+
+.pollURL {
+  color: #F0AD4E;
+  font-weight: bold;
+}
+
 
 .answer1, .answer2 {
   display: inline-block;
@@ -50,9 +99,41 @@ form input[type="submit"] {
   font-weight: bold;
 }
 
-footer {
+.copyright {
   text-align: center;
-  position: absolute;
-  width: 100%;
+  color: #333;
   bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@supports (display:flex) {
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  form {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .field-container {
+    width: 30em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .field-container label {
+    display: flex;
+    flex-direction: column;
+  }
+  .field-container label input {
+    margin: 1em 0 0 0;
+  }
 }

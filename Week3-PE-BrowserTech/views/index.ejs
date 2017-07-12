@@ -1,27 +1,30 @@
 <% include partials/head.ejs %>
 
 <main>
-  <section>
+  <h1>Welkom bij PollBuddy!</h1>
+  <section class="block-container">
     <form id="submit-poll-form" method="post" action="/">
       <fieldset>
         <legend>Nieuwe Poll Aanmaken</legend>
-        <label>
-          <span>Poll naam (dit wordt de URL)</span>
-          <input type="text" name="pollName" required placeholder="Geef de poll een naam">
-        </label>
-        <hr>
-        <label>
-          <span>Welke vraag wil je stellen?</span>
-          <input type="text" name="pollQuestion" required placeholder="Typ je vraag">
-        </label>
-        <label>
-          <span>Antwoord 1</span>
-          <input type="text" name="pollAnswer1" required placeholder="Typ het eerste antwoord">
-        </label>
-        <label>
-          <span>Antwoord 2</span>
-          <input type="text" name="pollAnswer2" required placeholder="Typ het tweede antwoord">
-        </label>
+        <div class="field-container">
+          <label>
+            <span>Poll naam (dit wordt de URL)</span>
+            <input type="text" name="pollName" required placeholder="Geef de poll een naam">
+          </label>
+          <hr>
+          <label>
+            <span>Welke vraag wil je stellen?</span>
+            <input type="text" name="pollQuestion" required placeholder="Typ je vraag">
+          </label>
+          <label>
+            <span>Antwoord 1</span>
+            <input type="text" name="pollAnswer1" required placeholder="Typ het eerste antwoord">
+          </label>
+          <label>
+            <span>Antwoord 2</span>
+            <input type="text" name="pollAnswer2" required placeholder="Typ het tweede antwoord">
+          </label>
+        </div>
       </fieldset>
       <input type="submit" value="Aanmaken">
     </form>

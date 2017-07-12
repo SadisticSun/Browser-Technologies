@@ -48,14 +48,15 @@ app.get('/thankyou', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-
+  var fullUrl                   = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   var fields                    = req.body;
   pollInformation.pollName      = fields.pollName;
+  pollInformation.pollURL       = `${fullUrl}${pollInformation.pollName}`;
   pollInformation.pollQuestion  = fields.pollQuestion;
   pollInformation.pollAnswer1   = fields.pollAnswer1;
   pollInformation.pollAnswer2   = fields.pollAnswer2;
 
-  console.log(pollInformation);
+  console.log(pollInformation.pollURL);
 
   res.redirect(`/results/${pollInformation.pollName}`);
 });

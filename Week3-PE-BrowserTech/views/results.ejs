@@ -1,25 +1,31 @@
 <% include partials/head %>
 <h1>Poll Resultaten</h1>
-<% if (pollData) { %>
-  <section>
-    <h2><%= pollData.pollName %></h2>
-    <h3>Vraag: <%= pollData.pollQuestion %></h3>
-  </section>
+<main>
+  <% if (pollData) { %>
+    <section class="block-container">
+      <section>
+        <h3>URL naar deze poll:</h3>
+        <a class="pollURL" href="<%= pollData.pollURL %>" target="_blank"><%= pollData.pollURL %></a>
+        <h2>Vraag: <%= pollData.pollQuestion %></h2>
+      </section>
 
-  <section class="results">
-    <section class="answer1">
-      <h3><%= pollData.pollAnswer1 %></h3>
-      <span id="results1">0</span>
-    </section>
+      <section class="results">
+        <h3>Respons:</h3>
+        <section class="answer1">
+          <h3><%= pollData.pollAnswer1 %></h3>
+          <span id="results1">0</span>
+        </section>
 
-    <section class="answer1">
-      <h3><%= pollData.pollAnswer2 %></h3>
-      <span id="results2">0</span>
-    </section>
+        <section class="answer1">
+          <h3><%= pollData.pollAnswer2 %></h3>
+          <span id="results2">0</span>
+        </section>
+      </section>
+    <% } else { %>
+      <p>Oops, no data :(</p>
+    <% } %>
   </section>
-<% } else { %>
-  <p>Oops, no data :(</p>
-<% } %>
+</main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 <script type="text/javascript" src="/js/results.js"></script>
