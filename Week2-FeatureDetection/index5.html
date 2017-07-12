@@ -29,11 +29,11 @@
     var message = "I am a list item!";
 
     if (!document.querySelector || !document.querySelectorAll) {
-        console.log("You're using Internet Explorer 7 or lower.. BOOO!");
+        alert("You're using Internet Explorer 7 or lower.. BOOO!");
         block = document.getElementById('block');
         items  = document.getElementsByClassName('list-item');
     } else {
-        console.log("You're not using Internet Explorer.. YAAY!");
+        alert("You're not using Internet Explorer 7.. YAAY!");
         block = document.querySelector('#block');
         items = document.querySelectorAll('.list-item');
     }

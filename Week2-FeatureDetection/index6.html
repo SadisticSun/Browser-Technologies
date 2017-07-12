@@ -14,23 +14,36 @@
 </body>
 
 <script>
-
+    alert('script loaded');
     // Source: https://stackoverflow.com/questions/1000597/event-preventdefault-function-not-working-in-ie
 
     var form = document.getElementById('form');
 
-    form.addEventListener('submit', function (e) {
-        // Check if preventDetault is supported.
-        if (!event.preventDefault) {
-            // No support, use IE version of preventDefault
-            e.returnValue = false;
-            console.log('Form submitted (IE version)')
-        } else {
-            e.preventDefault();
-            console.log('Form submitted (Chrome/FF/Safari version)');
-        }
-    })
+    // Check if addEventListener is supported, if not then use Microsoft's proprietary version attachEvent
+    if (!document.addEventListener) {
 
+      form.attachEvent('onsubmit', function (e) {
+        alert('no eventlistener');
+        preventFormSubmit(e);
+      })
+    } else {
+      form.addEventListener('submit', function (e) {
+        alert('eventlistener present!');
+          preventFormSubmit(e);
+      })
+    }
+
+  function preventFormSubmit(e) {
+    // Check if preventDetault is supported.
+    if (!event.preventDefault) {
+        // No support, use IE version of preventDefault
+        e.returnValue = false;
+        alert('Form submitted (IE version)')
+    } else {
+        e.preventDefault();
+        alert('Form submitted (Chrome/FF/Safari version)');
+    }
+  }
 
 </script>
 </html>
