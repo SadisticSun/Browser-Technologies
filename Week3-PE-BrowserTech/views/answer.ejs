@@ -1,17 +1,22 @@
 <% include partials/head.ejs %>
 
 <main>
-  <div id="noscript-warning">
-    <h3>Let op! Javascript staat uitgeschakeld.</h3>
-    <p>Je hebt Javascript nodig om PollBuddy te kunnen gebruiken.</p>
-  </div>
   <section class="block-container">
-    <form data-name="<%= pollData.pollName %>" id="submit-answer-form">
+    <form method="post" action="/<%= pollData.pollName %>" data-name="<%= pollData.pollName %>" id="submit-answer-form">
       <h1><%= pollData.pollQuestion %></h1>
       <fieldset>
         <legend>Jouw antwoord</legend>
-        <input id="answer1" type="button" name="answer-1" value="<%= pollData.pollAnswer1 %>">
-        <input id="answer2" type="button" name="answer-2" value="<%= pollData.pollAnswer2 %>">
+        <label>
+          <span><%= pollData.pollAnswers[0].name %></span>
+          <input checked type="radio" name="answer" value="<%= pollData.pollAnswers[0].name %>">
+        </label>
+        <label>
+          <span><%= pollData.pollAnswers[1].name %></span>
+          <input type="radio" name="answer" value="<%= pollData.pollAnswers[1].name %>">
+        </label>
+        <input type="submit" value="Antwoorden">
+        <!-- <input id="answer1" type="submit" name="answer-1" value="<%= pollData.pollAnswer1 %>">
+        <input id="answer2" type="submit" name="answer-2" value="<%= pollData.pollAnswer2 %>"> -->
       </fieldset>
     </form>
   </section>

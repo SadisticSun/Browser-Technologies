@@ -53,12 +53,11 @@ form fieldset legend {
 }
 
 form fieldset label span {
-  display: block;
+
   margin: 1em 0 0;
 }
 
 form fieldset label input {
-  width: 20em;
   padding: 1em 2em;
   border: 4px solid #0099FF;
   border-radius: 1em;
@@ -107,12 +106,12 @@ form input[type="button"]:focus {
 }
 
 
-.answer1, .answer2 {
+.answer {
   display: inline-block;
   margin: 0 2em;;
 }
 
-#results1, #results2 {
+#results0, #results1 {
   font-size: 600%;
   font-weight: bold;
 }

@@ -17,7 +17,21 @@ app.use(bodyParser.json());
 app.use(compression())
 app.set('view engine', 'ejs');
 
-var pollInformation = {}
+var pollInformation = {
+  pollName: '',
+  pollURL: '',
+  pollQuestion: '',
+  pollAnswers: [
+    { name: '' },
+    { name: '' }
+  ]
+}
+var results = {
+  answerCounter: [
+    { answerCount: 0 },
+    { answerCount: 0 }
+  ]
+};
 
 io.on('connection', function (socket) {
   // Connect
@@ -48,24 +62,41 @@ app.get('/thankyou', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  var fullUrl                   = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-  var fields                    = req.body;
-  pollInformation.pollName      = fields.pollName;
-  pollInformation.pollURL       = `${fullUrl}${pollInformation.pollName}`;
-  pollInformation.pollQuestion  = fields.pollQuestion;
-  pollInformation.pollAnswer1   = fields.pollAnswer1;
-  pollInformation.pollAnswer2   = fields.pollAnswer2;
+  var fullUrl                           = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  var fields                            = req.body;
+  pollInformation.pollName              = fields.pollName;
+  pollInformation.pollURL               = `${fullUrl}${pollInformation.pollName}`;
+  pollInformation.pollQuestion          = fields.pollQuestion;
+  pollInformation.pollAnswers[0].name   = fields.pollAnswer1;
+  pollInformation.pollAnswers[1].name   = fields.pollAnswer2;
 
-  console.log(pollInformation.pollURL);
-
+  console.log(pollInformation);
   res.redirect(`/results/${pollInformation.pollName}`);
 });
 
-app.get(`/:${pollInformation.pollName}`, (req, res) => {
+app.get(`/:id`, (req, res) => {
   console.log(pollInformation.pollName);
   res.render('answer', {pollData: pollInformation});
-})
+});
 
-app.get(`/results/:${pollInformation.pollName}`, (req, res) => {
-  res.render('results', {pollData: pollInformation});
+app.post(`/:id`, (req, res) => {
+  if (req.body.answer === pollInformation.pollAnswers[0].name) {
+    results.answerCounter[0].answerCount++;
+    console.log('Added 1 to answer 1');
+    console.log(results);
+  } else if (req.body.answer === pollInformation.pollAnswers[1].name) {
+    results.answerCounter[1].answerCount++;
+    console.log('Added 1 to answer 2');
+    console.log(results);
+  }
+  // results[req.body.answer] = results[req.body.answer] ? results[req.body.answer] + 1 : 1;
+  res.redirect('/thankyou');
+});
+
+app.get('/results/:id', (req, res) => {
+  console.log('rendered results');
+  res.render('results', {
+    pollData: pollInformation,
+    results: results
+  });
 });

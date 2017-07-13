@@ -2,14 +2,21 @@
   'use strict';
 
   var socket = io();
-  var noscriptWarning = document.getElementById('noscript-warning');
-  noscriptWarning.innerHTML = "";
+
+  // Fallback for IE8's lack of console log without opening dev tools
+  if (typeof console == "undefined") console = {
+      log: function() {},
+      debug: function() {},
+      error: function() {}
+  };
 
   var ctx = document.getElementById("resultsChart");
-  var answer1 = document.getElementById('answer1-value').getAttribute('data-answer');
-  var answer2 = document.getElementById('answer2-value').getAttribute('data-answer');
-  var results1Count = 0;
-  var results2Count = 0;
+  var answer1Label = document.getElementById('answer0-value').getAttribute('data-answer');
+  var answer2Label = document.getElementById('answer1-value').getAttribute('data-answer');
+  var answer1CountLabel = document.getElementById('results0');
+  var answer2CountLabel = document.getElementById('results1');
+  var answer1Counter = 0;
+  var answer2Counter = 0;
 
   var chartData = {
       datasets: [{
@@ -17,8 +24,8 @@
           backgroundColor: ["#F012BE", "#FFDC00"]
       }],
       labels: [
-          answer1,
-          answer2
+          answer1Label,
+          answer2Label
       ]
   };
 
@@ -49,27 +56,18 @@
     }
   }
 
-  // Fallback for IE8's lack of console log without opening dev tools
-  if (typeof console == "undefined") console = {
-      log: function() {},
-      debug: function() {},
-      error: function() {}
-  };
-
   socket.on('updateAnswer1', function () {
     console.log('Antwoord 1 ontvangen!');
-    results1Count++;
-    updateChart(0, results1Count);
-    console.log('Aantal antwoord 1: ' + results1Count);
-    document.getElementById('results1').innerHTML = results1Count;
+    answer1Counter++;
+    answer1CountLabel.innerHTML = answer1Counter;
+    updateChart(0, answer1Counter);
   });
 
   socket.on('updateAnswer2', function () {
     console.log('Antwoord 2 ontvangen!');
-    results2Count++;
-    updateChart(1, results2Count);
-    console.log('Aantal antwoord 2: ' + results2Count);
-    document.getElementById('results2').innerHTML = results2Count;
+    answer2Counter++;
+    answer2CountLabel.innerHTML = answer2Counter;
+    updateChart(1, answer2Counter);
   });
 
 }());
