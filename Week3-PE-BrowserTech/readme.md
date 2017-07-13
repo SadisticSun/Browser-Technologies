@@ -7,6 +7,9 @@ This repo contains a progressively enhanced web app for the Browser Technologies
 
 In this version I took it a bit further (and different) and made a fun little app with which you can create a real-time poll.
 
+![PollBuddy](readme-img/labtest.jpeg)
+<figcapture>Testing!</figcapture>
+
 ## User Story
 The user story for this app is that a teacher wants to create a poll amongst his or her students, share the link and display the results live on screen.
 
