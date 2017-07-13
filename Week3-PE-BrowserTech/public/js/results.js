@@ -2,6 +2,9 @@
   'use strict';
 
   var socket = io();
+  var noscriptWarning = document.getElementById('noscript-warning');
+  noscriptWarning.innerHTML = "";
+
   var ctx = document.getElementById("resultsChart");
   var answer1 = document.getElementById('answer1-value').getAttribute('data-answer');
   var answer2 = document.getElementById('answer2-value').getAttribute('data-answer');

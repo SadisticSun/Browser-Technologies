@@ -1,6 +1,10 @@
 <% include partials/head.ejs %>
 
 <main>
+  <div id="noscript-warning">
+    <h3>Let op! Javascript staat uitgeschakeld.</h3>
+    <p>Je hebt Javascript nodig om PollBuddy te kunnen gebruiken.</p>
+  </div>
   <section class="block-container">
     <form data-name="<%= pollData.pollName %>" id="submit-answer-form">
       <h1><%= pollData.pollQuestion %></h1>
