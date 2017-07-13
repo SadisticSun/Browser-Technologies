@@ -4,6 +4,16 @@ main, article, section, header, footer {
   display: block;
 }
 
+#noscript-warning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: crimson;
+  color: white;
+  opacity: 0.95;
+}
+
 body {
   background-color: #FFFFFF;
   color: #333333;

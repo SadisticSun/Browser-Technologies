@@ -7,10 +7,11 @@
         debug: function() {},
         error: function() {}
     };
-    
+
     var socket = io();
 
     var form = {
+      noscriptWarning: document.getElementById('noscript-warning'),
       pollForm: document.getElementById('submit-poll-form'),
       answerForm: document.getElementById('submit-answer-form'),
       answer1: document.getElementById('answer1'),
@@ -19,6 +20,10 @@
 
     var app = {
       init: function () {
+
+        // Remove the No Javascript message when JS is enabled. Using innerHTML is supported on all browsers, even older IE versions.
+        form.noscriptWarning.innerHTML = "";
+
         if (!document.addEventListener) {
           form.answer1.attachEvent('onclick', function() {
             app.sendAnswer1();
