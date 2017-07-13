@@ -25,6 +25,18 @@ The forms have been made as semantic as possible for optimal screen reader usage
 
 The user story states that a teacher wants to be able to use it. Since there are cases where schools only allow Internet Explorer, it is essential that the app works on those browsers.
 
+When Javascript is disabled, a message is shown:
+![PollBuddy](readme-img/noscript.png)
+
+This message is created by making it show on default, but removing it with Javascript. If JS is disabled, the element is not removed.
+
+```javascript
+// Remove the No Javascript message when JS is enabled. 
+// Using innerHTML is supported on all browsers, even older IE versions.
+
+form.noscriptWarning.innerHTML = "";
+```
+
 ## How it's done
 The app functionality is built upon Websockets. Using Socket.io it is possible to send data and show any changes real-time in an overview page.
 Socket.io is somewhat of an industry standard when it comes to websockets and is widely used. On top of that, Socket.io has good browser support. I even managed to get it to work in Internet Explorer 8.
