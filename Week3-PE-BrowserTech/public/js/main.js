@@ -10,71 +10,55 @@
 
     var socket = io();
 
-    var form = {
-      noscriptWarning: document.getElementById('noscript-warning'),
-      pollForm: document.getElementById('submit-poll-form'),
-      answerForm: document.getElementById('submit-answer-form'),
-      answer1: document.getElementById('answer1'),
-      answer2: document.getElementById('answer2')
+    var elements = {
+      noscriptWarning:      document.getElementById('noscript-warning'),
+      answerForm:           document.getElementById('submit-answer-form')
     }
-
     var app = {
       init: function () {
-
         // Remove the No Javascript message when JS is enabled. Using innerHTML is supported on all browsers, even older IE versions.
-        form.noscriptWarning.innerHTML = "";
+        elements.noscriptWarning.innerHTML = "";
 
+        // Check if eventlistener is supported (for IE8 and below)
         if (!document.addEventListener) {
-          form.answer1.attachEvent('onclick', function() {
-            app.sendAnswer1();
-          });
-          form.answer2.attachEvent('onclick', function() {
-            app.sendAnswer2();
+          console.log('No eventlistener');
+          elements.answerForm.attachEvent('onsubmit', function(e) {
+            app.sendAnswerViaSocket();
+            app.redirect();
           });
         } else {
-          form.answer1.addEventListener('click', function() {
+          elements.answerForm.addEventListener('submit', function(e) {
             console.log('Antwoord 1 versturen');
-            app.sendAnswer1();
-          });
-          form.answer2.addEventListener('click', function() {
-            console.log('Antwoord 2 versturen');
-            app.sendAnswer2();
+            app.sendAnswerViaSocket();
+            app.redirect();
           });
         }
       },
-      sendAnswer1: function () {
+      sendAnswerViaSocket: function () {
         socket.emit('answer1', function () {
-          console.log('Antwoord 1 gegeven');
+          console.log('Antwoord gegeven');
         })
-        app.redirect();
       },
-      sendAnswer2: function () {
-        socket.emit('answer2', function () {
-          console.log('Antwoord 2 gegeven');
-        })
-        app.redirect();
-      },
-
-      redirect: function () {
-        var userAgent = navigator.userAgent.toLowerCase(),
-        isIE          = userAgent.indexOf('msie') !== -1,
-        version       = parseInt(userAgent.substr(4, 2), 10),
-        formID        = form.answerForm.getAttribute('data-name'),
-        url           = '/thankyou';
-
-        // Internet Explorer 8 and lower
-        if (isIE && version < 9) {
-            var link = document.createElement('a');
-            link.href = url;
-            document.body.appendChild(link);
-            link.click();
-        }
-
-        // All other browsers can use the standard window.location.href
-        else {
-            window.location.href = url
-        }
-      }
+      // redirect: function () {
+      //   var userAgent = navigator.userAgent.toLowerCase(),
+      //   isIE          = userAgent.indexOf('msie') !== -1,
+      //   version       = parseInt(userAgent.substr(4, 2), 10),
+      //   formID        = elements.answerForm.getAttribute('data-name'),
+      //   url           = '/thankyou';
+      //
+      //   // Internet Explorer 8 and lower
+      //   if (isIE && version < 9) {
+      //       var link = document.createElement('a');
+      //       link.href = url;
+      //       document.body.appendChild(link);
+      //       link.click();
+      //   }
+      //
+      //   // All other browsers can use the standard window.location.href
+      //   else {
+      //       window.location.href = url
+      //   }
+      // }
     };
 
     app.init();

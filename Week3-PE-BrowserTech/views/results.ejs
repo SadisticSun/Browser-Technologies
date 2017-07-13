@@ -1,11 +1,25 @@
-<% include partials/head %>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <noscript>
+      <meta id="refresh-meta" http-equiv="refresh" content="2">
+    </noscript>
+    <title>PollBuddy</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+</head>
+
+<body>
 <h1>Poll Resultaten</h1>
 <main>
   <div id="noscript-warning">
     <h3>Let op! Javascript staat uitgeschakeld.</h3>
     <p>Je hebt Javascript nodig om PollBuddy te kunnen gebruiken.</p>
   </div>
-  <% if (pollData) { %>
+  <% if (results && pollData) { %>
     <section class="block-container">
       <section>
         <h3>URL naar deze poll:</h3>
@@ -15,15 +29,14 @@
 
       <section class="results">
         <h3>Respons:</h3>
-          <section class="answer1">
-            <h3 id="answer1-value" data-answer="<%= pollData.pollAnswer1 %>"><%= pollData.pollAnswer1 %></h3>
-            <span id="results1">0</span>
-          </section>
 
-          <section class="answer1">
-            <h3 id="answer2-value" data-answer="<%= pollData.pollAnswer2 %>"><%= pollData.pollAnswer2 %></h3>
-            <span id="results2">0</span>
-          </section>
+        <% for (var key in results.answerCounter) { %>
+          <section class="answer">
+           <h3 id="answer<%=key%>-value" data-answer="<%= pollData.pollAnswers[key].name %>"><%= pollData.pollAnswers[key].name %></h3>
+           <span id="results<%=key%>"><%= results.answerCounter[key].answerCount %></span>
+         </section>
+        <% } %>
+
         <canvas id="resultsChart" width="400" height="250"></canvas>
       </section>
     <% } else { %>
