@@ -212,7 +212,6 @@ As you can see, no chart is loaded on unsupported browsers.
 Of course IE9 works then too. Even including fancy chart!
 ![PollBuddy](readme-img/ie9.gif)
 
-
 ### Known issues and unsupported features
 When Javascript is not enabled/supported, the app will not work. This is due to Socket.io's depencency on Javascript. Is is not possible to create a real-time app without Javascript at this point in time and therefore a well considered choice has been made to require it for the app's use.
 
@@ -227,6 +226,20 @@ if (typeof console == "undefined") console = {
 };
 ```
 I found this solution at: https://stackoverflow.com/questions/27953823/console-is-undefined-error-in-ie8
+
+Another interesting thing I found is that you can create HTML5 elements if they are not supported. This is not an ideal solution, but it is better than resorting to div's everywhere.
+```
+<!--[if lt IE 9]>
+   <script>
+      document.createElement('header');
+      document.createElement('nav');
+      document.createElement('section');
+      document.createElement('article');
+      document.createElement('footer');
+   </script>
+<![endif]-->
+```
+Source: http://tatiyants.com/how-to-get-ie8-to-support-html5-tags-and-web-fonts/
 
 ## Dependencies
 * Body Parser
