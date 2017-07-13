@@ -25,27 +25,20 @@ The forms have been made as semantic as possible for optimal screen reader usage
 
 The user story states that a teacher wants to be able to use it. Since there are cases where schools only allow Internet Explorer, it is essential that the app works on those browsers.
 
-When Javascript is disabled, a message is shown:
-![PollBuddy](readme-img/noscript.png)
-
-This message is created by making it show on default, but removing it with Javascript. If JS is disabled, the element is not removed.
-
-```javascript
-// Remove the No Javascript message when JS is enabled. 
-// Using innerHTML is supported on all browsers, even older IE versions.
-
-form.noscriptWarning.innerHTML = "";
-```
 
 ## How it's done
-The app functionality is built upon Websockets. Using Socket.io it is possible to send data and show any changes real-time in an overview page.
-Socket.io is somewhat of an industry standard when it comes to websockets and is widely used. On top of that, Socket.io has good browser support. I even managed to get it to work in Internet Explorer 8.
+PollBuddy is an app that is built progressively enhanced. That means it was built upon IE8 first and without JavaScript on the client. The app is fully functional without JavaScript enabled. It is not real-time in that case, but the results page reloads itself to show new data every second.
 
-The chart is made with ChartJS, a handy little library that is useful for all kinds of charts and is easy to implement, has great cross-browser support and looks good out of the box.
+Without JavaScript enabled:
+![PollBuddy](readme-img/nojs.gif)
 
-Most of the logic is rendered server-side, ensuring better support (and performance) across platforms and browsers. However, some essential code is needed on the client side.
-All markup has been checked for support and whenever it is absent, a small fallback is used.
+With JavaScript enabled:
+![PollBuddy](readme-img/withjs.gif)
 
+The app's real-time functionality is an enhancement for modern browsers and is built with Websockets. Using Socket.io it is possible to send data and show any changes real-time in the overview page. Socket.io is somewhat of an industry standard when it comes to websockets and is widely used. On top of that, Socket.io has good browser support. I even managed to get it to work in Internet Explorer 8.
+Another enhancement is the live pie-chart. This chart is made with ChartJS, a handy little library that is useful for all kinds of charts and is easy to implement, has great cross-browser support and looks good out of the box. It works in IE9!
+
+Most of the logic is rendered server-side, ensuring better support (and performance) across platforms and browsers. However, some essential code is needed on the client side. All markup has been checked for support and whenever it is absent, a small fallback is used.
 Styling is done with Flexbox where possible and fallbacks for non-flexbox browsers are present.
 
 ## Special Technologies/Enhancements used
@@ -110,6 +103,10 @@ if (!document.addEventListener) {
 Here I check if the eventListener is or is not present. If it isn't, use Microsoft's own ```attachEvent``` method.
 
 Another example of a fallback is a redirect. Here I did use a browser sniffing method for selfeducational purposes.
+The script basically creates a link to the page we want to redirect to and then clicks it.
+Other browsers will just use the standard ```window.location.href```.
+
+<b>EDIT: This has been removed as browser sniffing is deemed 'not nice'. Replaced with server-side redirection.</b>
 
 ```javascript
 redirect: function () {
@@ -133,13 +130,12 @@ redirect: function () {
   }
 }
 ```
-The script basically creates a link to the page we want to redirect to and then clicks it.
-Other browsers will just use the standard ```window.location.href```.
+
 #### Chart.js
 
 ![PollBuddy](readme-img/chart_animation.gif)
 
-Because Chart.js is not supported by IE8 (because of methods used that were not available), I have built a fallback for it to not load it in the script. Since I also provide a numerical overview that is real-time as well, it is just an enhancement that could be degraded gracefully.
+Because Chart.js is not supported by IE8 (because of methods used that were not available), I have built a check to enhance the app with the Chart when it is possible. Since I also provide a numerical overview that is real-time as well, it is just an enhancement.
 
 ```Javascript
 var resultsChart;
@@ -169,8 +165,7 @@ if (document.addEventListener) {
   }
 }
 ```
-By checking if eventlistener is or is not supported, we can sniff out if IE8 is being used, or another browser that has no support for Chart.js' essentials.
-This method is advised by Microsoft's Developer Network as they feel Feature Detection is better than Browser Sniffing.
+By checking if eventlistener is or is not supported, we can check if IE8 is being used, or another browser that has no support for Chart.js' essentials. This method is advised by Microsoft's Developer Network as they feel Feature Detection is better than Browser Sniffing.
 
 Source: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
 ## Browser Support
