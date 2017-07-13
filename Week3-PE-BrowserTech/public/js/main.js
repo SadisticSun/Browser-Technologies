@@ -11,13 +11,10 @@
     var socket = io();
 
     var elements = {
-      noscriptWarning:      document.getElementById('noscript-warning'),
       answerForm:           document.getElementById('submit-answer-form')
     }
     var app = {
       init: function () {
-        // Remove the No Javascript message when JS is enabled. Using innerHTML is supported on all browsers, even older IE versions.
-        elements.noscriptWarning.innerHTML = "";
 
         // Check if eventlistener is supported (for IE8 and below)
         if (!document.addEventListener) {

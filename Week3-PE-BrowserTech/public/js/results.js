@@ -1,11 +1,7 @@
 (function() {
   'use strict';
-  
-  var socket = io();
 
-  // Remove the No Javascript message when JS is enabled. Using innerHTML is supported on all browsers, even older IE versions.
-  var noscriptWarning = document.getElementById('noscript-warning');
-  noscriptWarning.innerHTML = "";
+  var socket = io();
 
   // Fallback for IE8's lack of console log without opening dev tools
   if (typeof console == "undefined") console = {
