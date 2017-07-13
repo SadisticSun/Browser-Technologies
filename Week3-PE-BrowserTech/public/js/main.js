@@ -36,26 +36,6 @@
           console.log('Antwoord gegeven');
         })
       },
-      // redirect: function () {
-      //   var userAgent = navigator.userAgent.toLowerCase(),
-      //   isIE          = userAgent.indexOf('msie') !== -1,
-      //   version       = parseInt(userAgent.substr(4, 2), 10),
-      //   formID        = elements.answerForm.getAttribute('data-name'),
-      //   url           = '/thankyou';
-      //
-      //   // Internet Explorer 8 and lower
-      //   if (isIE && version < 9) {
-      //       var link = document.createElement('a');
-      //       link.href = url;
-      //       document.body.appendChild(link);
-      //       link.click();
-      //   }
-      //
-      //   // All other browsers can use the standard window.location.href
-      //   else {
-      //       window.location.href = url
-      //   }
-      // }
     };
 
     app.init();
