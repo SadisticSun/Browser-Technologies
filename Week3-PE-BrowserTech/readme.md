@@ -211,7 +211,6 @@ Of course IE9 works then too. Even including fancy chart!
 ![PollBuddy](readme-img/ie9.gif)
 
 ### Known issues and unsupported features
-When Javascript is not enabled/supported, the app will not work. This is due to Socket.io's depencency on Javascript. Is is not possible to create a real-time app without Javascript at this point in time and therefore a well considered choice has been made to require it for the app's use.
 
 #### Interesting quirks
 A funny little thing that I encountered is that ```console.log(message)``` does not work in IE8 and IE9 when the developer tools are not open. That means that the app could potentially crash on lines that have these. I solved this issue by placing a piece of code in the script that checks if the console object is present:
